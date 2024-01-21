@@ -1,0 +1,76 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;  
+}
+
+.bg-red {
+    background-color: #D83A56 !important;
+    
+}
+
+.bg-blue{
+    background-color: #26366D !important;
+    padding: 3rem 0;
+}
+
+.bg-orange{
+    background-color: #EB783B !important;
+}
+
+.bg-dark-blue{
+    background-color: #2D3250 !important;
+}
+
+.bg-dark-blue,
+.bg-orange,
+.bg-blue,
+.bg-red{
+    color: #fff !important;
+}
+
+
+.parallax-image {
+    display: block;
+    height: 95vh;
+    width: 100%;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    background-image: url("assets/arkaplan3.jpg");
+}
+
+.btn-orange{
+    background-color: #EB783B !important;
+}
+
+.btn-red{
+    background-color: #D83A56 !important;
+}
+
+.btn-orange,
+.btn-red{
+    color: #fff !important;
+    transition: all 0.3s ease-in-out !important;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.btn-orange:hover {
+    background-color: #D83A56 !important;
+}
+
+.btn-red:hover {
+    background-color: #EB783B !important;
+}
+
+.main-footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 15px;
+    text-align: center;
+  }

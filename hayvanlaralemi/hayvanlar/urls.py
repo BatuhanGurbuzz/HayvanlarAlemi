@@ -1,5 +1,7 @@
 from django.urls import path
-from hayvanlar.views import index
+from hayvanlar.views import index, animals
 urlpatterns = [
-    path('', index, name = 'index'),
+    path('', index, name = 'anasayfa'),
+    path('hayvanlar/', animals, name = 'hayvanlar')
+    
 ]
