@@ -1,0 +1,43 @@
+{% extends 'partials/_base.html' %}
+{% load static %}
+
+{% block content %}
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-md-12">
+        <h2>Hoşgeldiniz!</h2>
+        <p class="lead">Hayvanlar alemine dair eğlenceli bilgiler ve haberler burada.</p>
+      </div>
+    </div>
+
+    <div class="row mt-4">
+      <div class="col-md-4">
+        <div class="card">
+          <img src="{% static 'images/lion.jpg' %}" class="card-img-top" alt="Aslan">
+          <div class="card-body">
+            <h5 class="card-title">Aslan</h5>
+            <p class="card-text">Aslanlar, kraliyet ailesinin lideridir.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <img src="{% static 'images/elephant.jpg' %}" class="card-img-top" alt="Fil">
+          <div class="card-body">
+            <h5 class="card-title">Fil</h5>
+            <p class="card-text">Filler, büyük ve zarif hayvanlardır.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <img src="{% static 'images/dolphin.jpg' %}" class="card-img-top" alt="Yunus">
+          <div class="card-body">
+            <h5 class="card-title">Yunus</h5>
+            <p class="card-text">Yunuslar, zeki ve oyunbaz deniz canlılarıdır.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
