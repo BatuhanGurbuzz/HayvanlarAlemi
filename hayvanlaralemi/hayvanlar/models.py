@@ -121,9 +121,6 @@ class Animal(AbstracModel):
     
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
-        
-        super().save(*args, **kwargs)
-        
         if self.img:
             image = Image.open(self.img.path)
             
@@ -133,6 +130,8 @@ class Animal(AbstracModel):
                 image.thumbnail(output_size)
                 
                 image.save(self.img.path)
+                
+        super().save(*args, **kwargs)
         
     
         
