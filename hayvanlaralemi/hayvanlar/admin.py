@@ -22,8 +22,8 @@ class AnimalClassAdmin(admin.ModelAdmin):
         
 @admin.register(Animal) 
 class AnimalAdmin(admin.ModelAdmin):
-    list_display = ['id', 'name', 'img', 'slug', 'description', 'updatedDate', 'createdDate']
-    search_fields = ['name', 'slug']
+    list_display = ['id', 'name', 'animalClass', 'img', 'slug', 'description', 'updatedDate', 'createdDate']
+    search_fields = ['name', 'slug', 'animalClass']
     list_editable = ['name', 'description']
     readonly_fields = ['slug']
     

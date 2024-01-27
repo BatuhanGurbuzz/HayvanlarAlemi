@@ -1,30 +1,9 @@
 from django.shortcuts import render, get_object_or_404
-from hayvanlar.models import GeneralSetting, Animal
+from hayvanlar.models import Animal
 from django.core.paginator import Paginator
-
-def get_general_setting(parameter):
-    try:
-        obj = GeneralSetting.objects.get(name=parameter).parameter
-    except:
-        obj = ''
-
-    return obj
-
-def layout(request):
-    # General Settings Start #
-    site_title = get_general_setting('site_title')
-    site_description = get_general_setting('site_description')
-    # General Settings End #
-    
-    animals = Animal.objects.all()
-    
-    context = {
-        'site_title': site_title,
-        'site_description': site_description,
-        'animals': animals,
-    }
-    
-    return context
+from hayvanlar.api.serializers import AnimalSerializer
+from rest_framework import generics
+from hayvanlar.api.pagination import SmallPagination
 
 def index(request):
     latest_animals = Animal.objects.all().order_by('-createdDate')[:3]
@@ -54,3 +33,19 @@ def animal_details(request, slug):
     }
     
     return render(request, 'hayvan.html', context)
+
+class AnimalListCreateAPIView(generics.ListCreateAPIView):
+    queryset = Animal.objects.all().order_by('-id')
+    serializer_class = AnimalSerializer
+    pagination_class = SmallPagination
+    
+class AnimalDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Animal.objects.all()
+    serializer_class = AnimalSerializer
+    
+    
+    
+
+
+
+
