@@ -19,7 +19,7 @@
           <a class="nav-link {% if '/' == request.path %}active{% endif %}" aria-current="page" href="{% url 'anasayfa' %}">Anasayfa</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {% if '/hayvanlar/' == request.path %}active{% endif %}" href="{% url 'hayvanlar' %}">Türler</a>
+          <a class="nav-link {% if '/animals/' in request.path %}active{% endif %}" href="{% url 'animals' %}">Türler</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Api</a>

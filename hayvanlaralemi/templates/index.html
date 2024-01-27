@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block content %}
-  <div class="container mt-5">
+  <div class="container my-2">
     <div class="row">
       <div class="col-md-12">
         <h2>Hoşgeldiniz!</h2>
@@ -10,34 +10,22 @@
       </div>
     </div>
 
-    <div class="row mt-4">
-      <div class="col-md-4">
-        <div class="card">
-          <img src="{% static 'images/lion.jpg' %}" class="card-img-top" alt="Aslan">
-          <div class="card-body">
-            <h5 class="card-title">Aslan</h5>
-            <p class="card-text">Aslanlar, kraliyet ailesinin lideridir.</p>
+    <div class="row row-cols-1 row-cols-md-3 g-4 mb-2">
+      {% for animal in latest_animals %}
+        <div class="col my-2">
+          <div class="card bg-dark-blue" style="width:18rem;height:30rem;">
+            <img src="{{ animal.img.url }}" class="card-img-top" alt="{{ animal.name }}" />
+            <div class="card-body">
+              <h5 class="card-title">{{ animal.name }}</h5>
+              <h6 class="card-title">{{ animal.animalClass }}</h6>
+              <p class="card-text">
+                {{ animal.description | truncatewords:20 }}
+              </p>
+              <a href="{% url 'animals_details' animal.slug %}" class="btn btn-red">İncele</a>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card">
-          <img src="{% static 'images/elephant.jpg' %}" class="card-img-top" alt="Fil">
-          <div class="card-body">
-            <h5 class="card-title">Fil</h5>
-            <p class="card-text">Filler, büyük ve zarif hayvanlardır.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card">
-          <img src="{% static 'images/dolphin.jpg' %}" class="card-img-top" alt="Yunus">
-          <div class="card-body">
-            <h5 class="card-title">Yunus</h5>
-            <p class="card-text">Yunuslar, zeki ve oyunbaz deniz canlılarıdır.</p>
-          </div>
-        </div>
-      </div>
+      {% endfor %}
     </div>
   </div>
 {% endblock content %}

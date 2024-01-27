@@ -1,30 +1,65 @@
 {% extends 'partials/_base.html' %}
 {% load static %}
 
-
 {% block content %}
 
-
   <div class="container">
-    <div class="row row-cols-1 row-cols-md-3 g-4 py-5">
-      
-      <div class="col">
-        <div class="card bg-dark-blue">
-          <img src="..." class="card-img-top" alt="..." />
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">
-              This is a longer card with supporting text below as a natural
-              lead-in to additional content. This content is a little bit
-              longer.
-            </p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+    <div class="row row-cols-1 row-cols-md-3 g-4 py-3">
+      {% for animal in page.object_list %}
+        <div class="col">
+          <div class="card bg-dark-blue">
+            <img src="{{ animal.img.url }}" class="card-img-top" alt="{{ animal.name }}" />
+            <div class="card-body">
+              <h5 class="card-title">{{ animal.name }}</h5>
+              <h6 class="card-title">{{ animal.animalClass }}</h6>
+              <p class="card-text">
+                {{ animal.description | truncatewords:20 }}
+              </p>
+              <a href="{% url 'animals_details' animal.slug %}" class="btn btn-red">Devamını gör...</a>
+            </div>
           </div>
         </div>
-      </div>
+      {% endfor %}
       
+    </div>
+    <div class="row my-2">
+      
+      <div class="col-md-4 offset-md-3">
+        <p>Sayfa: {{ page.number }}/{{ page.paginator.num_pages }}</p>
+        <nav aria-label="...">
+          <ul class="pagination">
+            <li class="page-item">
+              {% if page.has_previous %}
+                <a class="page-link" href="{% url 'animals' %}?page={{ page.previous_page_number }}">Geri</a>
+              {% endif %}
+              
+            </li>
+            
+            {% for num_page in page.paginator.page_range %}
+            
+              {% if page.number == num_page %}
+                <li class="page-item active" aria-current="page">
+                  <a class="page-link" href="{% url 'animals' %}?page={{ num_page }}">{{ num_page }}</a>
+                </li>
+              {% else %}
+              <li class="page-item" aria-current="page">
+                <a class="page-link" href="{% url 'animals' %}?page={{ num_page }}">{{ num_page }}</a>
+              </li>
+              {% endif %}
+            
+            {% endfor %}
+
+            
+            
+
+            <li class="page-item">
+              {% if page.has_next %}
+                <a class="page-link" href="{% url 'animals' %}?page={{ page.next_page_number }}">İleri</a>
+              {% endif %}
+            </li>
+          </ul>
+        </nav>
+      </div>
     </div>
   </div>
 {% endblock content %}
-
-

@@ -94,6 +94,13 @@ class Animal(AbstracModel):
     
     animalClass = models.ForeignKey(AnimalClass, on_delete = models.CASCADE)
     
+    description = models.TextField(
+        verbose_name = 'Hayvan Açıklaması',
+        null = True,
+        max_length = 255,
+    )
+    
+    
     slug = models.SlugField(
         null = False,
         unique = True,
@@ -112,6 +119,8 @@ class Animal(AbstracModel):
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
         super().save(*args, **kwargs)
+        
+    
         
     class Meta:
         verbose_name = 'Hayvan'
