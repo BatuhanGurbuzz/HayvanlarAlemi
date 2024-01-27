@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.text import slugify
+from PIL import Image
 # Create your models here.
 class AbstracModel(models.Model):
     updatedDate = models.DateField(
@@ -75,6 +76,8 @@ class AnimalClass(AbstracModel):
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
         super().save(*args, **kwargs)
+        
+        
     
     class Meta:
         verbose_name = 'Hayvan Sınıfı'
@@ -118,7 +121,18 @@ class Animal(AbstracModel):
     
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
+        
         super().save(*args, **kwargs)
+        
+        if self.img:
+            image = Image.open(self.img.path)
+            
+            if image.height > 600 or image.width > 600:
+                output_size = (600,600)
+                
+                image.thumbnail(output_size)
+                
+                image.save(self.img.path)
         
     
         
